@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EV Battery Health Prediction - AI-Powered Diagnostics Platform">
+    <title>EV Battery Health | Neural Diagnostics</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="landing-body">
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Landing Navigation -->
+    <nav class="premium-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" style="text-decoration: none;">
+                <i class="fa-solid fa-car-battery logo-icon"></i>
+                <div class="logo-text">EV Health</div>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-item">About</a>
+                <a href="dashboard.html" class="nav-item">Dashboard</a>
+                <a href="dashboard.html#predict-view" class="nav-item">Predict Health</a>
+                <a href="dashboard.html#analytics-view" class="nav-item">History & Analytics</a>
+                <div class="nav-item live-indicator"><div class="live-dot"></div> Live</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        
+        <div class="hero-container">
+            <div class="hero-badge">v2.0 Model Live</div>
+            <h1 class="hero-title">Deep Neural Diagnostics for<br><span class="text-gradient">EV Batteries</span></h1>
+            <p class="hero-subtitle">Predict state of health, remaining lifespan, and degradation pathways with state-of-the-art Support Vector Machine precision.</p>
+            
+            <div class="hero-actions">
+                <a href="dashboard.html" class="primary-btn massive-btn glowing-btn">
+                    Enter Dashboard <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="dashboard.html#predict-view" class="secondary-btn massive-btn ghost-btn">
+                    Predict Health
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header">
+            <h2>Platform Capabilities</h2>
+            <p>Built for fleet managers and EV owners who demand transparency.</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h3>Algorithmic Precision</h3>
+                <p>An RBF Kernel SVM trained on precise vehicle telemetry logs safely and accurately determines battery degradation thresholds.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                <h3>Zero-Latency Telemetry</h3>
+                <p>Instant localized diagnostic verdicts powered by Python. Calculate Health using just 5 core vehicle inputs without waiting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Proactive Insights</h3>
+                <p>Don't just observe a score. The platform generates actionable maintenance recommendations on DCFC usage to extend fleet lifespan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology / Architecture Section -->
+    <section id="technology" class="tech-section">
+        <div class="tech-container">
+            <div class="tech-text">
+                <h2>Built on Secure Architecture</h2>
+                <p>The platform runs an embedded Python environment mapping high-dimensional scalar inputs directly through active neural models.</p>
+                <ul class="tech-list">
+                    <li><i class="fa-solid fa-check text-primary"></i> <strong>Optimized Feature Set:</strong> Maps down to essential vectors preserving 96% accuracy.</li>
+                    <li><i class="fa-solid fa-check text-primary"></i> <strong>Locally Executed:</strong> Operates entirely on standard infrastructure.</li>
+                    <li><i class="fa-solid fa-check text-primary"></i> <strong>Dynamically Rendered:</strong> Fast dark-mode DOM visualization in real-time.</li>
+                </ul>
+            </div>
+            <div class="tech-visual">
+                <div class="floating-stat-card">
+                    <div class="stat-value text-gradient">96.2%</div>
+                    <div class="stat-label">Prediction Accuracy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landing Footer -->
+    <footer class="landing-footer">
+        <div class="footer-content">
+            <div class="logo">
+                <i class="fa-solid fa-car-battery logo-icon"></i>
+                <div class="logo-text">EV Health</div>
+            </div>
+            <p class="copyright">&copy; 2026 EV Battery Health Platform. Intelligence mapped.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

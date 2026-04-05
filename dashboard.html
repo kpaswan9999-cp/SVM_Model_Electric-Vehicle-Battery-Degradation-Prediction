@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EV Battery Health Prediction - AI-Powered Diagnostics Platform">
+    <title>EV Battery Health | Neural Diagnostics</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="unified-body">
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen active">
+        <div class="loader-content">
+            <i class="fa-solid fa-car-battery loader-icon"></i>
+            <h2>Initializing Neural Core...</h2>
+            <div class="loader-bar"><div class="fill"></div></div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="premium-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" style="text-decoration: none;">
+                <i class="fa-solid fa-car-battery logo-icon"></i>
+                <div class="logo-text">EV Health</div>
+            </a>
+            
+            <!-- Navbar Links (App Navigation) -->
+            <div class="nav-links">
+                <a href="index.html#features" class="nav-item">About</a>
+                <a href="#" class="nav-item active" data-target="dashboard-view">Dashboard</a>
+                <a href="#" class="nav-item" data-target="predict-view">Predict Health</a>
+                <a href="#" class="nav-item" data-target="analytics-view">History & Analytics</a>
+                <div class="nav-item live-indicator"><div class="live-dot"></div> Live</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main App Content Container -->
+    <main class="main-container">
+        
+        <!-- VIEW: DASHBOARD -->
+        <section id="dashboard-view" class="view-section active fade-in">
+            <div class="page-header">
+                <h2>Platform Dashboard</h2>
+                <p>Real-time telemetry and aggregated fleet degradation.</p>
+            </div>
+
+            <!-- Top Metrics Cards -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon blue-bg"><i class="fa-solid fa-calculator"></i></div>
+                    <div class="metric-info">
+                        <h4>Total Predictions</h4>
+                        <h3>1,248</h3>
+                        <span class="trend up"><i class="fa-solid fa-arrow-up"></i> 12% this week</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon green-bg"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="metric-info">
+                        <h4>Avg Fleet Health</h4>
+                        <h3>89.4%</h3>
+                        <span class="trend up"><i class="fa-solid fa-arrow-up"></i> 1.2% this month</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon red-bg"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="metric-info">
+                        <h4>Critical Vehicles</h4>
+                        <h3>24</h3>
+                        <span class="trend down"><i class="fa-solid fa-arrow-down"></i> 4 fewer</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon amber-bg"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="metric-info">
+                        <h4>Model Accuracy</h4>
+                        <h3>96.2%</h3>
+                        <span class="trend up"><i class="fa-solid fa-circle-check"></i> Validated</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Charts -->
+            <div class="dashboard-charts-row">
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h3>Health Distribution</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dash-pie-chart"></canvas>
+                    </div>
+                </div>
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h3>Average SOH Trend</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dash-line-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- VIEW: PREDICT -->
+        <section id="predict-view" class="view-section fade-in">
+            <div class="page-header">
+                <h2>Diagnostic Scan</h2>
+                <p>Run vehicle telemetry logs through the AI inference engine.</p>
+            </div>
+
+            <div class="diagnostic-split-layout">
+                <!-- Left: Form -->
+                <div class="diagnostic-form-side">
+                    <form id="prediction-form" class="prediction-form">
+                        <div class="form-cards-stack">
+                            
+                            <!-- Card 1: Vehicle Specifications -->
+                            <div class="input-card hover-lift">
+                                <div class="card-header">
+                                    <div class="icon-box"><i class="fa-solid fa-car-side"></i></div>
+                                    <h3>Vehicle Specifications</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-group">
+                                        <label for="Car_Model">Vehicle Model</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-solid fa-tag"></i>
+                                            <select id="Car_Model" name="Car_Model" required>
+                                                <option value="">Loading models...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 8px;">
+                                        <label for="Battery_Capacity_kWh">Design Capacity (kWh)</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-solid fa-battery-full"></i>
+                                            <input type="number" id="Battery_Capacity_kWh" name="Battery_Capacity_kWh" step="0.1" placeholder="e.g. 75" required>
+                                        </div>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 8px;">
+                                        <label for="Vehicle_Age_Months">Vehicle Age (Months)</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            <input type="number" id="Vehicle_Age_Months" name="Vehicle_Age_Months" placeholder="e.g. 24" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Usage & Battery History -->
+                            <div class="input-card hover-lift">
+                                <div class="card-header">
+                                    <div class="icon-box"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+                                    <h3>Usage & History</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="input-group">
+                                        <label for="Total_Charging_Cycles">Total Charging Cycles</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-solid fa-recycle"></i>
+                                            <input type="number" id="Total_Charging_Cycles" name="Total_Charging_Cycles" placeholder="e.g. 300" required>
+                                        </div>
+                                    </div>
+                                    <div class="input-group" style="margin-top: 16px;">
+                                        <label for="Fast_Charge_Ratio">Fast Charging Ratio (%)</label>
+                                        <div class="input-with-icon">
+                                            <i class="fa-solid fa-bolt-lightning"></i>
+                                            <input type="number" id="Fast_Charge_Ratio" name="Fast_Charge_Ratio" min="0" max="100" placeholder="e.g. 30" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="submit-action-container" style="margin-top: 32px; display: flex; justify-content: flex-end;">
+                                        <button type="submit" id="predict-btn" class="primary-btn massive-btn glowing-btn" style="width: 100%;">
+                                            <i class="fa-solid fa-microchip"></i> Predict
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" id="SoH_Percent" name="SoH_Percent" value="95">
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Right: Advanced Animation Engine -->
+                <div class="diagnostic-animation-side">
+                    <div class="cyber-animation-wrapper">
+                        <div class="scanning-ring ring-bg"></div>
+                        <div class="scanning-ring ring-1"></div>
+                        <div class="scanning-ring ring-2"></div>
+                        <div class="scanning-ring ring-3"></div>
+                        <img src="battery_hologram.png" alt="Battery Core Render" class="floating-battery">
+                        <div class="scan-beam"></div>
+                        
+                        <div class="hud-element top-left">
+                            <span class="hud-label">CORE TEMP</span>
+                            <span class="hud-value">OPTIMAL</span>
+                        </div>
+                        <div class="hud-element bottom-right">
+                            <span class="hud-label">NEURAL NET</span>
+                            <span class="hud-value active-pulse">SCANNING</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div id="prediction-results" class="results-panel hidden">
+                <hr class="section-divider">
+                <h2>Prediction Results</h2>
+
+                <div class="hero-result-card">
+                    <div class="gauge-container">
+                        <canvas id="soh-gauge"></canvas>
+                        <div class="gauge-value" id="soh-number">--%</div>
+                        <div class="gauge-label">State of Health</div>
+                    </div>
+                    <div class="status-badge" id="status-badge">--</div>
+                    <p class="status-msg" id="status-msg" style="margin-top: 8px; color: var(--text-gray);">Analysis successful.</p>
+                </div>
+
+                <div class="result-metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-icon" id="health-icon"><i class="fa-solid fa-battery-three-quarters"></i></div>
+                        <div class="metric-info">
+                            <h4>Battery Health Status</h4>
+                            <h3 id="metric-health-txt">Excellent</h3>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon blue-bg"><i class="fa-solid fa-brain"></i></div>
+                        <div class="metric-info">
+                            <h4>Confidence Score</h4>
+                            <h3 id="confidence-txt">94%</h3>
+                            <div class="mini-progress"><div class="fill" style="width: 94%"></div></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon" id="life-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                        <div class="metric-info">
+                            <h4>Est. Remaining Life</h4>
+                            <h3 id="remaining-life-txt">8 Yrs 2 Mo</h3>
+                            <span class="sub-text" id="remaining-km">~150,000 km left</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-charts-grid">
+                    <div class="card chart-card">
+                        <h3>Degradation Curve</h3>
+                        <div class="chart-container"><canvas id="degradation-chart"></canvas></div>
+                    </div>
+                    <div class="card chart-card">
+                        <h3>Feature Impact</h3>
+                        <div class="chart-container"><canvas id="importance-chart"></canvas></div>
+                    </div>
+                </div>
+
+                <div class="insights-panel">
+                    <h3><i class="fa-solid fa-lightbulb text-warning"></i> Actionable Insights</h3>
+                    <div class="insights-grid" id="insights-container"></div>
+                </div>
+                
+                <div class="action-footer">
+                    <button class="primary-btn" id="reset-scan-btn"><i class="fa-solid fa-rotate-right"></i> New Scan</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: HISTORY -->
+        <section id="analytics-view" class="view-section fade-in">
+            <div class="page-header">
+                <h2>Analytics & History</h2>
+                <p>Platform-wide historical tracking and aggregated diagnostics.</p>
+            </div>
+            <div class="card table-card">
+                <div class="card-header">
+                    <h3>History</h3>
+                    <div class="filters">
+                        <button id="export-csv-btn" class="secondary-btn"><i class="fa-solid fa-download"></i> CSV Export</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Vehicle Model</th>
+                                <th>Age (Mo)</th>
+                                <th>Cycles</th>
+                                <th>Est. SOH</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 EV Battery Health Platform. Intelligence mapped.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
