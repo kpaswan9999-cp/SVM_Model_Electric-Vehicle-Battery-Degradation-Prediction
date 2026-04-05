@@ -1,3 +1,5 @@
+# Live Link: https://svm-model-electric-vehicle-battery.vercel.app
+
 # 🔋 EV Battery Health Predictor
 
 A high-fidelity, cybernetic dashboard for predicting and monitoring Electric Vehicle battery degradation. This application uses a Support Vector Machine (SVM) machine learning model to analyze battery telemetry and provide actionable health insights.
