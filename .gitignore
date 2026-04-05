@@ -12,8 +12,6 @@ pip-delete-this-directory.txt
 .ipynb_checkpoints/
 *.ipynb
 Dataset/
-model.pkl
-preprocessing.json
 node_modules/
 .DS_Store
 .vscode/
