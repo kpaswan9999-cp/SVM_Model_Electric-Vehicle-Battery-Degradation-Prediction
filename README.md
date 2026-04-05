@@ -4,8 +4,6 @@
 
 A high-fidelity, cybernetic dashboard for predicting and monitoring Electric Vehicle battery degradation. This application uses a Support Vector Machine (SVM) machine learning model to analyze battery telemetry and provide actionable health insights.
 
-![Dashboard Preview](battery_hologram.png)
-
 ## 🚀 Live Demo
 - **Frontend (Vercel)**: `https://your-vercel-project.vercel.app`
 - **Backend API (Render)**: `https://ev-battery-health.onrender.com`
